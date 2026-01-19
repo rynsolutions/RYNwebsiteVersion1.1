@@ -1,6 +1,4 @@
 import { Helmet } from 'react-helmet-async';
-import logoIcon from 'figma:asset/07514b7ed4710815354d8c9fd9af3bb0e42bc000.png';
-import previewImage from 'figma:asset/e664a40c37f3955007e1a959d4c7e50e8fdf0144.png';
 
 interface SEOProps {
   title?: string;
@@ -8,14 +6,16 @@ interface SEOProps {
   image?: string;
   url?: string;
   type?: string;
+  favicon?: string;
 }
 
 export function SEO({ 
   title = 'RYN Solutions - Proven Business Intelligence Solutions That Drive Revenue Growth',
   description = 'RYN Solutions provides industry-focused data intelligence, analytics and research services to enhance value for African businesses navigating the digital economy.',
-  image = previewImage,
+  image = 'https://rynsolutions.org/preview-image.png',
   url = 'https://rynsolutions.org',
-  type = 'website'
+  type = 'website',
+  favicon = '/favicon.png'
 }: SEOProps) {
   const fullTitle = title;
   const fullUrl = url;
@@ -26,7 +26,7 @@ export function SEO({
       <title>{fullTitle}</title>
       <meta name="title" content={fullTitle} />
       <meta name="description" content={description} />
-      <link rel="icon" type="image/png" href={logoIcon} />
+      <link rel="icon" type="image/png" href={favicon} />
       
       {/* Open Graph / Facebook */}
       <meta property="og:type" content={type} />
