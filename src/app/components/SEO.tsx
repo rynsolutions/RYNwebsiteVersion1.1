@@ -12,7 +12,7 @@ interface SEOProps {
 export function SEO({ 
   title = 'RYN Solutions - Proven Business Intelligence Solutions That Drive Revenue Growth',
   description = 'RYN Solutions provides industry-focused data intelligence, analytics and research services to enhance value for African businesses navigating the digital economy.',
-  image = 'https://rynsolutions.org/preview-image.png',
+  image = '/preview-image.png',
   url = 'https://rynsolutions.org',
   type = 'website',
   favicon = '/favicon.png'
