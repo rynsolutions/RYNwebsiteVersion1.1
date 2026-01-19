@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 import { ChevronRight, Mail, Linkedin, Shield, Check } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Footer } from '../components/Footer';
@@ -712,7 +713,7 @@ export function AboutPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <a href="/services" className="group block h-full">
+            <Link to="/services" className="group block h-full">
               <div className="bg-white border border-gray-200 hover:border-[#0891b2] hover:shadow-lg transition-all duration-300 h-full flex flex-col overflow-hidden">
                 <div className="h-56 overflow-hidden relative">
                   <img 
@@ -740,7 +741,7 @@ export function AboutPage() {
                   </div>
                 </div>
               </div>
-            </a>
+            </Link>
           </motion.div>
 
           {/* Link to Innovation */}
@@ -750,7 +751,7 @@ export function AboutPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <a href="/innovation" className="group block h-full">
+            <Link to="/innovation" className="group block h-full">
               <div className="bg-white border border-gray-200 hover:border-[#0891b2] hover:shadow-lg transition-all duration-300 h-full flex flex-col overflow-hidden">
                 <div className="h-56 overflow-hidden relative">
                   <img 
@@ -778,7 +779,7 @@ export function AboutPage() {
                   </div>
                 </div>
               </div>
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>
