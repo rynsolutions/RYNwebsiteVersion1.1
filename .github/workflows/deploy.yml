@@ -28,7 +28,7 @@ jobs:
           cache: 'npm' # Change to 'pnpm' if you use pnpm-lock.yaml
 
       - name: Install dependencies
-        run: npm ci # Change to 'pnpm install' if using pnpm
+        run: npm install # Change to 'pnpm install' if using pnpm
 
       - name: Build
         run: npm run build
