@@ -66,7 +66,7 @@ export function ChatbotWidget() {
   };
 
   const WEBHOOK_URL =
-    "https://ryn-py-chatbot.hf.space/webhook/a283559d-bfa7-417c-b602-544b2dcbbb8b";
+    "https://ryn-py-chatbot.hf.space/webhook/2e791a0c-1f04-4996-98e9-b03d963dd7ed";
 
   const quickQuestions = [
     "What services do you offer?",
