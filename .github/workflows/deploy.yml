@@ -33,9 +33,17 @@ jobs:
       - name: Build
         run: npm run build
 
-      # ADD THIS NEW STEP HERE:
-      - name: Copy index.html to 404.html
-        run: cp dist/index.html dist/404.html
+      - name: Generate Static Routes for SEO
+        run: |
+          # 1. Copy index for 404 fallback (keep this)
+          cp dist/index.html dist/404.html
+          
+          # 2. Create real folders for every main page to force HTTP 200 OK
+          # Add any new pages to this list separated by spaces
+          for route in services industries grow-my-business case-studies innovation learning insights about-us privacy-policy terms-of-service; do
+            mkdir -p dist/$route
+            cp dist/index.html dist/$route/index.html
+          done
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
