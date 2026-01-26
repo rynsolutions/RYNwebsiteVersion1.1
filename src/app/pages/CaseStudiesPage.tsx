@@ -35,6 +35,7 @@ import {
 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Footer } from '../components/Footer';
+import { useChatbot } from '../contexts/ChatbotContext';
 
 // --- Assets & Data ---
 
@@ -623,6 +624,7 @@ const RELATED_CAPABILITIES = {
 
 
 export function CaseStudiesPage() {
+  const { openChatbot } = useChatbot();
   const { id } = useParams<{ id: string }>();
   
   // Validate industry ID and redirect if invalid
@@ -711,17 +713,20 @@ export function CaseStudiesPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/contact">
-                <Button className={`h-12 md:h-14 px-6 md:px-8 text-white font-semibold text-base md:text-lg w-full sm:w-auto ${
+              <Button 
+                onClick={() => {
+                  const message = activeTab === 'health' ? 'I want to schedule a consultation' : activeTab === 'education' ? 'I want to connect with your team' : 'I want to schedule a diagnostic audit';
+                  openChatbot(message);
+                }}
+                className={`h-12 md:h-14 px-6 md:px-8 text-white font-semibold text-base md:text-lg w-full sm:w-auto ${
                   currentData.hero.badgeColor === 'slate' 
                     ? 'bg-slate-600 hover:bg-slate-500'
                     : currentData.hero.badgeColor === 'indigo'
                     ? 'bg-indigo-600 hover:bg-indigo-500'
                     : 'bg-emerald-600 hover:bg-emerald-500'
                 }`}>
-                  {activeTab === 'health' ? 'Schedule Consultation' : activeTab === 'education' ? 'Connect With Us' : 'Schedule Diagnostic Audit'}
-                </Button>
-              </Link>
+                {activeTab === 'health' ? 'Schedule Consultation' : activeTab === 'education' ? 'Connect With Us' : 'Schedule Diagnostic Audit'}
+              </Button>
               <Link to="/services">
                 <Button variant="outline" className="h-12 md:h-14 px-6 md:px-8 border-slate/20 text-black hover:bg-white/10 font-medium w-full sm:w-auto">
                   View Methodology
@@ -823,11 +828,16 @@ export function CaseStudiesPage() {
                   </li>
                 ))}
               </ul>
-              <Link to="/contact">
-                <Button variant="outline" className="w-full border-slate-300 hover:bg-white hover:border-slate-900 text-slate-900">
-                  {activeTab === 'health' ? 'Request Consultation' : 'Start Your Audit'}
-                </Button>
-              </Link>
+              <Button 
+                onClick={() => {
+                  const message = activeTab === 'health' ? 'I want to request a consultation' : 'I want to start my audit';
+                  openChatbot(message);
+                }}
+                variant="outline" 
+                className="w-full border-slate-300 hover:bg-white hover:border-slate-900 text-slate-900"
+              >
+                {activeTab === 'health' ? 'Request Consultation' : 'Start Your Audit'}
+              </Button>
             </motion.div>
           </div>
         </div>
@@ -991,13 +1001,14 @@ export function CaseStudiesPage() {
                 <p className="text-slate-600 text-sm leading-relaxed mb-6">
                   {useCase.description}
                 </p>
-                <Link to="/contact">
-                  <div className={`flex items-center text-sm font-semibold cursor-pointer group-hover:gap-2 transition-all ${
+                <div 
+                  onClick={() => openChatbot(`I'm interested in learning more about ${useCase.title}`)}
+                  className={`flex items-center text-sm font-semibold cursor-pointer group-hover:gap-2 transition-all ${
                     currentData.hero.badgeColor === 'blue' ? 'text-blue-900' : 'text-emerald-900'
-                  }`}>
-                    Let's Connect <ArrowRight className="w-4 h-4 ml-1" />
-                  </div>
-                </Link>
+                  }`}
+                >
+                  Let's Connect <ArrowRight className="w-4 h-4 ml-1" />
+                </div>
               </motion.div>
             ))}
           </div>
@@ -1063,15 +1074,16 @@ export function CaseStudiesPage() {
               : "Don't commit to a full rollout yet. Run a controlled Retention Pilot with RYN Labs to validate the 'Save Offer' algorithms first."}
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link to="/contact">
-              <Button className={`h-14 px-8 text-white font-semibold w-full sm:w-auto ${
+            <Button 
+              onClick={() => openChatbot('I want to request a free pilot program')}
+              className={`h-14 px-8 text-white font-semibold w-full sm:w-auto ${
                 currentData.hero.badgeColor === 'slate'
                   ? 'bg-slate-600 hover:bg-slate-500'
                   : 'bg-emerald-600 hover:bg-emerald-500'
-              }`}>
-                Request a Free Pilot
-              </Button>
-            </Link>
+              }`}
+            >
+              Request a Free Pilot
+            </Button>
             <Link to="/innovation">
               <Button variant="outline" className="h-14 px-8 border:bg-white/20 text-black hover:bg-white/10 w-full sm:w-auto">
                 Visit RYN Labs
